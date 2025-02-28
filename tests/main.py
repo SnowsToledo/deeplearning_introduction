@@ -6,7 +6,7 @@ def activation_function(x: np.ndarray) -> np.ndarray:
     Função de ativação do AdaLine. Como o AdaLine trabalha com regressão linear,
     a ativação é simplesmente a função identidade (f(x) = x).
     """
-    return  # SEU CÓDIGO AQUI
+    return  x# SEU CÓDIGO AQUI
 
 
 def initialize_weights(n_features: int) -> np.ndarray:
@@ -15,7 +15,7 @@ def initialize_weights(n_features: int) -> np.ndarray:
     :param n_features: Número de características (features) do dataset
     :return: Vetor de pesos inicializado
     """
-    return  # SEU CÓDIGO AQUI
+    return  np.random.rand(n_features)# SEU CÓDIGO AQUI
 
 
 def predict(X: np.ndarray, weights: np.ndarray) -> np.ndarray:
@@ -25,7 +25,8 @@ def predict(X: np.ndarray, weights: np.ndarray) -> np.ndarray:
     :param weights: Vetor de pesos
     :return: Vetor de predições
     """
-    X_bias = ...    # SEU CÓDIGO AQUI
+    ones = np.ones((X.shape[0], 1))
+    X_bias = np.hstack((ones, X))    # SEU CÓDIGO AQUI
     return activation_function(X_bias @ weights)
 
 
@@ -36,7 +37,8 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     :param y_pred: Valores preditos pelo modelo
     :return: Valor do erro quadrático médio
     """
-    return  # SEU CÓDIGO AQUI
+    
+    return np.mean((y_pred - y_true)**2) # SEU CÓDIGO AQUI
 
 
 def update_weights(X: np.ndarray, y: np.ndarray, weights: np.ndarray, lr: float) -> np.ndarray:
