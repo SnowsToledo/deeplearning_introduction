@@ -1,14 +1,14 @@
 # 📚 Primeira Lista de Exercícios de  Deep Learning
 
 ### 🧠 História e Evolução
-1. O que motivou o surgimento das redes neurais artificiais?
-2. Quem é considerado o "pai" das redes neurais?
-3. O que foi o Perceptron de Rosenblatt e qual era sua limitação?
-4. O que foi o "AI Winter" e por que ele aconteceu?
-5. Como o algoritmo de retropropagação (backpropagation) revolucionou o treinamento de redes?
-6. Em que década o algoritmo de backpropagation foi popularizado?
-7. Quais foram os marcos do ressurgimento do deep learning nos anos 2000?
-8. Qual a importância do artigo de AlexNet (2012) para o deep learning moderno?
+1. O que motivou o surgimento das redes neurais artificiais? Inspirando-se neste modelo, diversos pesquisadores tentaram simular o funcionamento do cérebro, principalmente o processo de aprendizagem por experiência, a fim de criar sistemas inteligentes capazes de realizar tarefas como classificação, reconhecimento de padrões, processamento de imagens, entre outras atividades.
+2. Quem é considerado o "pai" das redes neurais? Geoffrey Everest Hinton, um cientista da computação e psicólogo cognitivo britânico-canadense, é mais conhecido por seu trabalho em redes neurais artificiais.
+3. O que foi o Perceptron de Rosenblatt e qual era sua limitação? Perceptron é uma rede neural de camada única e um Perceptron de várias camadas é chamado de Rede Neural Artificial. A perceptron utiliza de valores de entrada que cada valor de entrada é multiplicado pelo seu peso respectivo depois é feito a somatório de cada multiplicação, este valor é comparado com um threshold, se ele for menor ou igual recebe uma classificação, se for maior recebe outra classificação
+4. O que foi o "AI Winter" e por que ele aconteceu?  Foram períodos em que as pesquisas no ramo da Inteligência artificial pararam de receber incentivo. Os motivos foram expectativas exageradas, Limitações Técnicas, Relatório Lighthill, falta de Poder Computacional, Colapso do Mercado de Máquinas LISP,  Limitações dos Sistemas Especialistas, Cortes no Financiamento Governamental, Desilusão com as Promessas Não Cumpridas, Fim do Projeto de Quinta Geração do Japão
+5. Como o algoritmo de retropropagação (backpropagation) revolucionou o treinamento de redes? O backpropagation é o algoritmo-chave que faz o treinamento de modelos profundos algo computacionalmente tratável. Para as redes neurais modernas, ele pode tornar o treinamento com gradiente descendente até dez milhões de vezes mais rápido, em relação a uma implementação ingênua. Essa é a diferença entre um modelo que leva algumas horas ou dias para treinar e e outro que poderia levar anos (sem exagero).
+6. Em que década o algoritmo de backpropagation foi popularizado?  artigo de 1986 de David Rumelhart, Geoffrey Hinton e Ronald Williams.
+7. Quais foram os marcos do ressurgimento do deep learning nos anos 2000? Com o aumento do poder computacional e a disponibilidade de grandes conjuntos de dados, que o Deep Learning realmente começou a florescer. O termo “aprendizagem profunda” começa a ganhar popularidade após um artigo de Geoffrey Hinton e Ruslan Salakhutdinov mostrar como uma rede neural de várias camadas poderia ser pré-treinada uma camada por vez. Processamento de dados e as unidades de processamento de gráficos (GPUs) se tornaram mais rápidos Redes Neurais Convolucionais (CNNs), Redes Neurais Recorrentes (RNNs) e Long Short-Term Memory (LSTM), Redes Adversariais Generativas (GANs) e Transformers e Atenção
+8. Qual a importância do artigo de AlexNet (2012) para o deep learning moderno? O AlexNet foi um modelo de classificação de imagem que possuía 650.000 neurônios e teve um resultado extraordinário na competição de imagem que chamou muita atenção
 9. O que permitiu o sucesso das redes profundas a partir da década de 2010?
 10. Quais tecnologias contribuíram para o avanço do deep learning?
 
