@@ -18,12 +18,12 @@ class Net(nn.Module):
         self.loss = nn.CrossEntropyLoss()
         self.optimizer = torch.optim.SGD(self.parameters(), lr=0.001)
 
-
     def forward(self, x):
         x = self.dense1(x)
         x = self.relu(x)
         x = self.dense2(x)
         return x
+
 
 def train_and_log_step(params: Dict):
     batch_size: int = params['batch_size']
@@ -32,7 +32,7 @@ def train_and_log_step(params: Dict):
 
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Lambda(lambda x: x.view(-1 )),
+        transforms.Lambda(lambda x: x.view(-1)),
     ])
 
     train_loader: DataLoader[Any] = torch.utils.data.DataLoader(
@@ -68,7 +68,7 @@ def train_and_log_step(params: Dict):
                 running_loss += loss.item()
 
             avg_loss = running_loss / len(train_loader)
-            print(f'Epoch [{epoch+1}], Loss: {avg_loss:.4f}')
+            print(f'Epoch [{epoch + 1}], Loss: {avg_loss:.4f}')
 
         model.eval()
         correct = 0
