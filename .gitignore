@@ -163,5 +163,5 @@ cython_debug/
 #.idea/
 
 *.xml
-.idea/
-misc.xml
+/.idea/
+misc.xml!/.idea/
