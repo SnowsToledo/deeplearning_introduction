@@ -1,6 +1,7 @@
-import torch
+from torch import device, cuda, no_grad, max
+import matplotlib.pyplot as plt
 import torch.nn as nn
-import yaml
+from torch.optim import SGD
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
@@ -13,8 +14,8 @@ class MNISTCNN(nn.Module):
         self.relu = nn.ReLU()
         self.max_pool = nn.MaxPool2d(2, 2)
         self.flatten = nn.Flatten()
-        self.dense = nn.Linear(64 * 7 * 7, 128)
-        self.output = nn.Linear(128, 10)
+        self.dense = nn.Linear(64 * 7 * 7, 256)
+        self.output = nn.Linear(256, 10)
 
     def forward(self, x):
         x = self.conv1(x)
@@ -52,10 +53,11 @@ def mnist_uploader():
 
 
 def train_model(model, train_loader, criterion, optimizer, epochs):
+    losses = [1]
     for epoch in range(epochs):
         model.train()
-        total_loss = 0
-        for batch_idx, (data, target) in enumerate(train_loader):
+        total_loss= 0
+        for _, (data, target) in enumerate(train_loader):
             data, target = data.to(device), target.to(device)
 
             optimizer.zero_grad()
@@ -65,22 +67,21 @@ def train_model(model, train_loader, criterion, optimizer, epochs):
             optimizer.step()
 
             total_loss += loss.item()
-
+        losses.append(total_loss / len(train_loader))
         print(f"Epoch {epoch + 1}/{epochs}, Loss: {total_loss / len(train_loader)}")
-
+    return losses
 
 # ============================================= #
 
 if __name__ == "__main__":
-    with open("config_model.yaml", "r") as f:
-        config = yaml.safe_load(f)
+   
 
-    batch_size = config["batch_size"]
-    epochs = config["epochs"]
-    learning_rate = config["learning_rate"]
-    momentum = config["momentum"]
+    batch_size = 64
+    epochs = 5
+    learning_rate = 0.01
+    momentum = 0.9
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = device("cuda" if cuda.is_available() else "cpu")
     print(f"DEVICE: {device}")
     # ============================================= #
 
@@ -90,22 +91,29 @@ if __name__ == "__main__":
 
     model = MNISTCNN().to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(
+    optimizer = SGD(
         model.parameters(), lr=learning_rate, momentum=momentum
     )
     ds, dl = mnist_uploader()
     # print(ds["train_dataset"][0])
 
-    train_model(model, dl["train_loader"], criterion, optimizer, epochs)
+    losses = train_model(model, dl["train_loader"], criterion, optimizer, epochs)
 
     model.eval()
     correct = 0
     total = 0
-    with torch.no_grad():
+    with no_grad():
         for data, target in dl["test_loader"]:
             data, target = data.to(device), target.to(device)
             output = model(data)
-            _, predicted = torch.max(output.data, 1)
+            _, predicted = max(output.data, 1)
             total += target.size(0)
             correct += (predicted == target).sum().item()
     print(f"Accuracy: {100 * correct / total:.2f}%")
+
+    x = range(epochs+1)
+
+    fig, ax = plt.subplots()
+    ax.plot(x, losses)
+
+    fig.savefig('mnist/losses.png')
